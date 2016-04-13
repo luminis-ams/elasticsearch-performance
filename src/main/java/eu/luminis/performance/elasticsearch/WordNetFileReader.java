@@ -1,4 +1,4 @@
-package org.luminis.performance.elasticsearch;
+package eu.luminis.performance.elasticsearch;
 
 import org.apache.commons.io.FileUtils;
 

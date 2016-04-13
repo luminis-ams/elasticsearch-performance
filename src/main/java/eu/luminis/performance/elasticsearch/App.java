@@ -1,4 +1,4 @@
-package org.luminis.performance.elasticsearch;
+package eu.luminis.performance.elasticsearch;
 
 import javax.script.ScriptException;
 import java.io.File;

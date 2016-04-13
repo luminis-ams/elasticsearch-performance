@@ -1,4 +1,4 @@
-package org.luminis.performance.elasticsearch;
+package eu.luminis.performance.elasticsearch;
 
 public class Document extends Offer {
     private Product itemOffered;
