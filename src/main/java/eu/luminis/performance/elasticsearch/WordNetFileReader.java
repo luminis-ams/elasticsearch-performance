@@ -15,7 +15,7 @@ public class WordNetFileReader {
     private static final ScriptEngine scriptEngine = new ScriptEngineManager()
             .getEngineByName("javascript");
 
-    public static List<Row> getRows(File dataSet, int startingLine) throws IOException, ScriptException {
+    public static List<Row> getRows(File dataSet, int startingLine) throws IOException {
         List<String> lines = FileUtils.readLines(dataSet);
 
         return lines.subList(startingLine, lines.size())

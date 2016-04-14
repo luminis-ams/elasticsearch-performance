@@ -3,22 +3,22 @@ package eu.luminis.performance.elasticsearch;
 import javax.script.ScriptException;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Random;
 
 public class App {
 
-    private static final Random random = new Random(24);
-
-    private DataGenerator dataGenerator = new DataGenerator();
+    private RandomProductGenerator randomProductGenerator = new RandomProductGenerator(10);
 
     public static void main(String[] args) throws IOException, ScriptException {
-        Random random = new Random(10);
 
-        System.out.println(random.nextInt() + "\n" + random.nextInt() + "\n" + random.nextInt());
+        new App().fillIndexes();
+    }
 
-        File f = new File(App.class.getResource("/noun.animal").getPath());
-        List<WordNetFileReader.Row> rows = WordNetFileReader.getRows(f, 10);
-        System.out.println(rows);
+    private App fillIndexes() throws IOException {
+        randomProductGenerator.addDataSource(new File(this.getClass().getResource("/noun.food").getPath()), 10);
+        randomProductGenerator.addDataSource(new File(this.getClass().getResource("/noun.animal").getPath()), 10);
+
+        System.out.println(randomProductGenerator.getProduct());
+
+        return this;
     }
 }

@@ -65,4 +65,16 @@ public class Product {
         this.aggregateRating = aggregateRating;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", url=" + url +
+                ", description='" + description + '\'' +
+                ", brand='" + brand + '\'' +
+                ", aggregateRating=" + aggregateRating +
+                '}';
+    }
 }
