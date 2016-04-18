@@ -10,6 +10,7 @@ public class Offer {
     private LocalDate priceValidUntil;
     private ItemAvailability availability;
     private String url;
+    private Product product;
 
     public String getId() {
         return id;
@@ -62,6 +63,15 @@ public class Offer {
 
     public Offer setUrl(String url) {
         this.url = url;
+        return this;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public Offer setProduct(Product product) {
+        this.product = product;
         return this;
     }
 }

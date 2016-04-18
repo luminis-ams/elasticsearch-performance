@@ -26,10 +26,10 @@ public class WordNetFileReader {
                 .collect(Collectors.toList());
     }
 
+    @SuppressWarnings("unchecked")
     private static Optional<Row> convertLineToRow(String line) {
 
         try {
-
             return Optional.ofNullable((Map<Integer, String>) scriptEngine.eval(line
                     .replace("{ ", "[\'")
                     .replace("}", "\']")

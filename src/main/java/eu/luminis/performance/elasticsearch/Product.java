@@ -1,6 +1,7 @@
 package eu.luminis.performance.elasticsearch;
 
 import java.net.URL;
+import java.util.List;
 
 public class Product {
 
@@ -11,6 +12,7 @@ public class Product {
     private String description;
     private String brand;
     private AggregateRating aggregateRating;
+    private List<Offer> offers;
 
     public String getId() {
         return id;
@@ -63,6 +65,15 @@ public class Product {
 
     public Product setAggregateRating(AggregateRating aggregateRating) {
         this.aggregateRating = aggregateRating;
+        return this;
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public Product setOffers(List<Offer> offers) {
+        this.offers = offers;
         return this;
     }
 
