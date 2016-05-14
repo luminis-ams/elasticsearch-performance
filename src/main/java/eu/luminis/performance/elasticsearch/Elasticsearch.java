@@ -29,10 +29,13 @@ public class Elasticsearch {
     private static final int port = 9300;
 
     private final Client client;
-    private final ObjectMapper objectMapper = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    private final ObjectMapper objectMapper;
 
     private Elasticsearch(String clusterName) throws UnknownHostException {
         this.client = getClient(clusterName);
+        this.objectMapper = new ObjectMapper()
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
     }
 
     public static Elasticsearch instance(String clusterName) throws UnknownHostException {
@@ -77,18 +80,13 @@ public class Elasticsearch {
                 .parallelStream()
                 .map(src -> {
                     try {
-                        return Optional.of(objectMapper.writeValueAsString(src));
+                        return Optional.of(objectMapper.writeValueAsBytes(src));
                     } catch (JsonProcessingException e) {
                         return Optional.empty();
                     }
                 })
                 .filter(Optional::isPresent)
-                .forEach(src -> {
-                            logger.debug(src.get().toString());
-                            bulkRequestBuilder
-                                    .add(new IndexRequest(indexName).source(src.get()));
-                        }
-                );
+                .forEach(src -> bulkRequestBuilder.add(new IndexRequest(indexName, indexName).source((byte[]) src.get())));
 
         logger.debug("Executing bulk request with size {}", sources.size());
 
